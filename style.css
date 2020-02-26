@@ -1,0 +1,29 @@
+html, body {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+}
+
+#stepper-form {
+  position: absolute;
+  width: 1200px;
+  top: 40%;
+  left: 50%;
+  transition: all 0.5s ease-out;
+  transform: translateX(0%);
+}
+
+fieldset {
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  display: none;
+  /* float: left; */
+  /* margin-right: 3rem; */
+  /* margin-bottom: 3rem; */
+}
+
+.active {
+  display: flex;
+  opacity: 1;
+}
