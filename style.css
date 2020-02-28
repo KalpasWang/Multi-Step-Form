@@ -7,23 +7,20 @@ html, body {
 
 #stepper-form {
   position: absolute;
-  width: 1200px;
-  top: 40%;
+  width: 999px;
+  top: 40vh;
   left: 50%;
-  transition: all 0.5s ease-out;
-  transform: translateX(0%);
+  transition: transform 0.5s ease-out;
 }
 
-fieldset {
+.fieldset {
   transform: translate(-50%, -50%);
   opacity: 0;
-  display: none;
-  /* float: left; */
-  /* margin-right: 3rem; */
-  /* margin-bottom: 3rem; */
+  transition: opacity 0.5s ease-out;
+  flex-basis: 100%;
 }
 
+
 .active {
-  display: flex;
   opacity: 1;
 }
