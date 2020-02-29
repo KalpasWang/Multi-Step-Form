@@ -10,13 +10,13 @@ html, body {
   width: 999px;
   top: 40vh;
   left: 50%;
-  transition: transform 0.5s ease-out;
+  transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
 
 .fieldset {
   transform: translate(-50%, -50%);
   opacity: 0;
-  transition: opacity 0.5s ease-out;
+  transition: opacity 0.4s cubic-bezier(0.77, 0, 0.175, 1);
   flex-basis: 100%;
 }
 
