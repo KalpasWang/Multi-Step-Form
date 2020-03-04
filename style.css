@@ -10,17 +10,24 @@ html, body {
   width: 999px;
   top: 40vh;
   left: 50%;
-  transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
 
 .fieldset {
   transform: translate(-50%, -50%);
   opacity: 0;
-  transition: opacity 0.4s cubic-bezier(0.77, 0, 0.175, 1);
+  visibility: hidden;
+  transition: opacity 0.5s cubic-bezier(0.77, 0, 0.175, 1), visibility 0.5s linear;
   flex-basis: 100%;
 }
 
 
 .active {
   opacity: 1;
+  visibility: visible;
+}
+
+.input-msg {
+  height: 25px;
+  margin-top: 0.25rem;
 }

@@ -1,16 +1,26 @@
 (function () {
+  // buttons
   let nextBtns = Array.from(document.querySelectorAll('.next'));
   let prevBtns = Array.from(document.querySelectorAll('.prev'));
   let finishBtn = document.querySelector('.finish');
+  
   let stepperForm = document.getElementById('stepper-form');
+  
+  // input field
   let username = document.getElementById('username');
   let password = document.getElementById('password');
   let email = document.getElementById('email');
   let phone = document.getElementById('phone');
   let address = document.getElementById('address');
+  
+  // current step
   let current_move = 0;
+  
+  // the distance of pixels form this form to next/prev form 
   const step_size = 333;
 
+
+  // buttons click event
   nextBtns.forEach(function (el) {
     el.addEventListener('click', handleNextBtn)
   });
@@ -21,11 +31,35 @@
 
   finishBtn.addEventListener('click', handleFinishBtn);
 
+
+
+  // remove error alert when typing
+  username.addEventListener('input', e => removeErrorMsg(e.target));
+  password.addEventListener('input', e => removeErrorMsg(e.target));
+  email.addEventListener('input', e => removeErrorMsg(e.target));
+  phone.addEventListener('input', e => removeErrorMsg(e.target));
+  address.addEventListener('input', e => removeErrorMsg(e.target));
+
+  function removeErrorMsg(el) {
+    el.classList.remove('is-invalid');
+    el.nextElementSibling.textContent = '';
+    el.nextElementSibling.classList.remove('invalid-feedback');
+  }
+
+  // validate html constraint
   function validate(items) {
     let validated = true;
     items.forEach(el => {
       if(!el.checkValidity()) {
         el.classList.add('is-invalid');
+        el.nextElementSibling.classList.add('invalid-feedback');
+        if(el.validity.valueMissing) {
+          el.nextElementSibling.textContent = `${el.id} can not be empty`;
+        } else if(el.validity.typeMismatch) {
+          el.nextElementSibling.textContent = `please input valid ${el.id}`;
+        } else {
+          el.nextElementSibling.textContent = 'unknown error';
+        }
         validated = false;
       }
       else {
@@ -35,7 +69,11 @@
     
     return validated;
   }
-
+  
+  
+  
+  
+  // when clicking next button on current form, check validation and move to next step
   function handleNextBtn(e) {
     e.preventDefault();
     const current_step = e.target.parentElement.parentElement.parentElement;
@@ -62,6 +100,8 @@
     return false;
   }
 
+
+  // move to previous step when click prev button
   function handlePrevBtn(e) {
     e.preventDefault();
     const current_step = e.target.parentElement.parentElement.parentElement;
@@ -72,7 +112,10 @@
     stepperForm.style.transform = 'translateX('+ current_move +'px)';
     return false;
   }
-
+  
+  
+  
+  // check validation and show success message, then reload the page
   function handleFinishBtn(e) {
     let current_step = this.parentElement.parentElement.parentElement;
     const isOK = validate([phone, address]);
